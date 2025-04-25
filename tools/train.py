@@ -111,7 +111,7 @@ def main(args):
         if "resume" in cfg.schedule
         else None
     )
-    if cfg.device.gpu_ids == -1:
+    if cfg.device.gpu_ids == [-1]:
         logger.info("Using CPU training")
         accelerator, devices, strategy, precision = (
             "cpu",
