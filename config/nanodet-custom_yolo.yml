@@ -59,11 +59,11 @@ class_names: &class_names ["object"]
 data:
   train:
     name: YoloDataset
-    img_path: data/V2.0-BC/TRAIN/IMAGES
-    ann_path: data/V2.0-BC/TRAIN/LABELS
+    img_path: data/V2.0-BC/TRAIN/images
+    ann_path: data/V2.0-BC/TRAIN/labels
     class_names: *class_names
-    input_size: [800, 998] #[w,h]
-    keep_ratio: False
+    input_size: [320, 320] #[w,h]
+    keep_ratio: True
     pipeline:
       perspective: 0.0
       scale: [0.6, 1.4]
@@ -78,15 +78,15 @@ data:
       normalize: [[103.53, 116.28, 123.675], [57.375, 57.12, 58.395]]
   val:
     name: YoloDataset
-    img_path: data/V2.0-BC/VAL/IMAGES
-    ann_path: data/V2.0-BC/VAL/LABELS
+    img_path: data/V2.0-BC/VALID/images
+    ann_path: data/V2.0-BC/VALID/labels
     class_names: *class_names
-    input_size: [800, 998] #[w,h]
-    keep_ratio: False
+    input_size: [320, 320] #[w,h]
+    keep_ratio: True
     pipeline:
       normalize: [[103.53, 116.28, 123.675], [57.375, 57.12, 58.395]]
 device:
-  gpu_ids: [0]
+  gpu_ids: [-1]
   workers_per_gpu: 10
   batchsize_per_gpu: 8
 schedule:
@@ -100,7 +100,7 @@ schedule:
     name: linear
     steps: 41
     ratio: 0.0001
-  total_epochs: 1
+  total_epochs: 5
   lr_schedule:
     name: CosineAnnealingLR
     T_max: 300
