@@ -119,3 +119,8 @@ work_dirs/
 
 /data
 experiments
+
+# media
+*.avi
+*.jpg
+*.png

@@ -1,0 +1,19 @@
+# config/config.yaml
+
+model:
+  xml_path: "models/outputs/openvino/nanodet.xml"
+  device: "AUTO"
+
+image_processing:
+  input_image_path: "data/raw-250110_dc_s001_b2_1.jpg"
+  output_image_path: "output/processed_image.jpg"
+  input_width: 320
+  input_height: 320
+
+postprocessing:
+  strides: [8, 16, 32]
+  reg_max: 7
+  score_thr: 0.7
+  nms_iou_threshold: 0.6
+  max_detections_per_image: 100
+  class_names: ["object"]
