@@ -5,8 +5,10 @@ model:
   device: "AUTO"
 
 image_processing:
-  input_image_path: "data/raw-250110_dc_s001_b2_1.jpg"
-  output_image_path: "output/processed_image.jpg"
+  input_image_path: "data/raw-250110_dc_s001_b2_10.jpg"
+  output_image_path: "output/det_sample_2.jpg"
+  input_video_path: "data/sample_video_3.avi"
+  output_video_path: "output/det_vid_sample_3.avi"
   input_width: 320
   input_height: 320
 

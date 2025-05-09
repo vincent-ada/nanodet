@@ -1,4 +1,4 @@
-# main.py
+# infer_img.py
 import os
 import cv2
 from src.utils import load_config, load_image, save_image, overlay_bbox_cv
@@ -52,8 +52,6 @@ def main():
     detections = postprocessor.process(raw_output, original_image.shape)
 
     # --- Visualization and Saving ---
-    # detections should be in the format overlay_bbox_cv expects
-    # e.g. {0: [[x1,y1,x2,y2,score], ...], 1: [...]}
     processed_image_bgr = overlay_bbox_cv(
         original_image,
         detections,
@@ -64,9 +62,9 @@ def main():
     save_image(output_image_path, processed_image_bgr)
 
     # For display if running in an environment that supports it (optional)
-    # cv2.imshow("Processed Image", processed_image_bgr)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
+    cv2.imshow("Processed Image", processed_image_bgr)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":

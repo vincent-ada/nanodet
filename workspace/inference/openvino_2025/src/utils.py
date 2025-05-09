@@ -87,11 +87,9 @@ def overlay_bbox_cv(img, dets, class_names, score_thresh):
             )
             continue
 
-        color = [random.randint(0, 255) for _ in range(3)]  # Random color for each box
+        color = (0, 255, 0)  # Green color
         text = "{}:{:.1f}%".format(class_names[label], score * 100)
-        txt_color = (
-            (0, 0, 0) if sum(color) > 382 else (255, 255, 255)
-        )  # Black or white text based on box color
+        txt_color = (0, 0, 0)  # Black or white text based on box color
         font = cv2.FONT_HERSHEY_SIMPLEX
 
         txt_size = cv2.getTextSize(text, font, 0.5, 2)[0]
@@ -109,18 +107,8 @@ def overlay_bbox_cv(img, dets, class_names, score_thresh):
     return img_copy
 
 
-def warp_boxes(boxes, M, width, height):
-    n = len(boxes)
-    if n:
-        xy = np.ones((n * 4, 3))
-        xy[:, :2] = boxes[:, [0, 1, 2, 3, 0, 3, 2, 1]].reshape(n * 4, 2)
-        xy = xy @ M.T
-        xy = (xy[:, :2] / xy[:, 2:3]).reshape(n, 8)
-        x = xy[:, [0, 2, 4, 6]]
-        y = xy[:, [1, 3, 5, 7]]
-        xy = np.concatenate((x.min(1), y.min(1), x.max(1), y.max(1))).reshape(4, n).T
-        xy[:, [0, 2]] = xy[:, [0, 2]].clip(0, width)
-        xy[:, [1, 3]] = xy[:, [1, 3]].clip(0, height)
-        return xy.astype(np.float32)
-    else:
-        return boxes
+def get_video_properties(cap):
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    return width, height, fps
