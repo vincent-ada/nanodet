@@ -85,7 +85,7 @@ class YoloDataset(CocoDataset):
             ann_file = os.path.join(ann_path, txt_name)
 
             data_dir = os.path.dirname(os.path.dirname(ann_file))
-            image_path = os.path.join(data_dir, "images", txt_name.split(".")[0])
+            image_path = os.path.join(data_dir, "IMAGES", txt_name.split(".")[0])
             image_file = self._find_image(image_path)
 
             if image_file is None:
