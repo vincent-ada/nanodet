@@ -119,6 +119,5 @@ work_dirs/
 *.sh~
 
 # project specific
-workspace
 data
 !nanodet/data

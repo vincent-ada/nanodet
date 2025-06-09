@@ -17,3 +17,4 @@ torchmetrics
 torchvision>=0.22.0
 tqdm
 openvino
+git+https://github.com/vincent-ada/nanodet
